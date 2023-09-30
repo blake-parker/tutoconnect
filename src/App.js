@@ -3,9 +3,9 @@ import Hello from "./Components/TestComponents/Hello";
 import "./App.css";
 
 //Firebase import, allows you to use firebase for storage and such
-import firebase from "firebase/app";
-import "firebase/firestore";
-import "firebase/auth";
+import firebase from "firebase/compat/app";
+import { getFirestore } from "firebase/firestore";
+import { getAuth } from "firebase/auth";
 
 //React hooks allowing you to work with react & firebase database easier.
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -21,8 +21,8 @@ firebase.initializeApp({
   measurementId: "G-WX66CQNK8K",
 });
 
-const auth = firebase.auth();
-const firestore = firebase.firestore();
+const auth = getAuth();
+const firestore = getFirestore();
 
 function App() {
   return (
