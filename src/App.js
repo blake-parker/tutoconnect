@@ -1,33 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Hello from "./Components/TestComponents/Hello";
 import "./App.css";
+import db from "./Components/firebase";
+import { collection, onSnapshot } from "firebase/firestore";
 
-//Firebase import, allows you to use firebase for storage and such
-import firebase from "firebase/compat/app";
-import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
-
-//React hooks allowing you to work with react & firebase database easier.
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollectionData } from "react-firebase-hooks/firestore";
-
-firebase.initializeApp({
-  apiKey: "AIzaSyC2UdmKZswXhNkiEMAPT60_mlIm5vDn6ZI",
-  authDomain: "tutoconnect-fd4e8.firebaseapp.com",
-  projectId: "tutoconnect-fd4e8",
-  storageBucket: "tutoconnect-fd4e8.appspot.com",
-  messagingSenderId: "393607826722",
-  appId: "1:393607826722:web:3d5445a7bd915cc440297b",
-  measurementId: "G-WX66CQNK8K",
-});
-
-const auth = getAuth();
-const firestore = getFirestore();
-
+function Text(props) {
+  return <h1 color={props.color}>{props.text}</h1>;
+}
 function App() {
+  const [colors, setColors] = useState([]);
+
+  useEffect(
+    () =>
+      onSnapshot(collection(db, "colors"), (snapshot) =>
+        setColors(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+      ),
+    []
+  );
+
   return (
     <>
       <Hello />
+
+      {colors.map((color) => (
+        <h1 key={color.id} style={{ color: color.value }}>
+          {color.name}
+        </h1>
+      ))}
     </>
   );
 }
