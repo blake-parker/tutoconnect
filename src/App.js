@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import Hello from "./Components/TestComponents/Hello";
 import "./App.css";
 import db from "./Components/firebase";
 import { collection, onSnapshot } from "firebase/firestore";
+import Navbar from "./Components/Navbar";
+import Home from "./Components/pages/Home";
+import Messages from "./Components/pages/Messages";
+import Search from "./Components/pages/Search";
+import Profile from "./Components/pages/Profile";
+import { Route, Routes } from "react-router-dom";
 
-function Text(props) {
-  return <h1 color={props.color}>{props.text}</h1>;
-}
 function App() {
   const [colors, setColors] = useState([]);
 
@@ -17,11 +19,17 @@ function App() {
       ),
     []
   );
-
   return (
     <>
-      <Hello />
-
+      <Navbar />
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/profile" element={<Profile />} />
+        </Routes>
+      </div>
       {colors.map((color) => (
         <h1 key={color.id} style={{ color: color.value }}>
           {color.name}
