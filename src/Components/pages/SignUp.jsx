@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import firebase from 'firebase/app';
-import 'firebase/auth';
+import auth from "../firebase"
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 function SignUp() {
   const [email, setEmail] = useState('');
@@ -8,10 +8,11 @@ function SignUp() {
 
   const handleSignUp = async () => {
     try {
-      await firebase.auth().createUserWithEmailAndPassword(email, password);
-      // Store user data in Firebase Database or Firestore here
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      // User is successfully registered, you can add code to store user data in Firestore here
     } catch (error) {
-      console.error('Error creating account:', error);
+      console.error('Error creating account:', error.message);
     }
   }
 
@@ -34,3 +35,5 @@ function SignUp() {
     </div>
   );
 }
+
+export default SignUp;
