@@ -9,15 +9,33 @@ import Search from "./Components/pages/Search";
 import Profile from "./Components/pages/Profile";
 import SignIn from "./Components/pages/SignIn";
 import SignUp from "./Components/pages/SignUp";
-import { Route, Routes } from "react-router-dom";
+import { auth } from './Components/firebase'; // Import auth from firebase.jsx
+import { Route, Routes, useNavigate } from "react-router-dom";
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(user => {
+      if (user) {
+        setIsAuthenticated(true);
+        navigate('/home');
+      } else {
+        setIsAuthenticated(false);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [navigate]);
+
   return (
     <>
       <Navbar />
       <div className="container">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={isAuthenticated ? <Home /> : <SignIn />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/search" element={<Search />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="/profile" element={<Profile />} />
