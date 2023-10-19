@@ -18,43 +18,42 @@ function SignIn() {
     }
   }
 
-    return (
-      <div style={styles.container}>
-        <img src={logo} alt="TutoConnect Logo" style={styles.logo} />
+  return (
+    <div style={styles.container}>
+      <img src={logo} alt="TutoConnect Logo" style={styles.logo} />
 
-        <label style={styles.label}>email</label>
-        <input
-          type="email"
-          placeholder="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          style={styles.input}
-        />
+      <label style={styles.label}></label>
+      <input
+        type="email"
+        placeholder="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        style={styles.input}
+      />
 
-        <label style={styles.label}>password</label>
-        <input
-          type="password"
-          placeholder="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          style={styles.input}
-        />
+      <label style={styles.label}></label>
+      <input
+        type="password"
+        placeholder="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        style={styles.input}
+      />
 
-        <button onClick={handleSignIn} style={styles.loginBtn}>Login</button>
-
-        <div style={styles.extraLinks}>
-          <a href="/signup">sign up</a>
-          <a href="#">reset password</a>
-        </div>
+      <div style={styles.extraLinks}>
+        <a href="/signup" style={{textDecoration: 'none', color: '#000'}}>sign up</a>
+        <a href="#" style={{textDecoration: 'none', color: '#000'}}>reset password</a>
       </div>
-  );
 
+      <button onClick={handleSignIn} style={styles.loginBtn}>Login</button>
+    </div>
+  );
 }
 
 const styles = {
   container: {
     fontFamily: 'Arial, sans-serif',
-    backgroundColor: '#CDD7D6',
+    backgroundColor: '#99a3a2',
     padding: '30px',
     borderRadius: '10px',
     display: 'flex',
@@ -67,7 +66,8 @@ const styles = {
   },
   logo: {
     maxWidth: '100%',
-    marginBottom: '20px'
+    marginBottom: '20px',
+    opacity: 0.9  // Making the logo semi-translucent
   },
   label: {
     alignSelf: 'flex-start', 
@@ -75,15 +75,16 @@ const styles = {
     fontWeight: 'bold'
   },
   input: {
-    width: '80%',  
+    width: '30%',  
     padding: '10px',
     margin: '10px 0',
     border: '1px solid #ccc',
     borderRadius: '5px'
   },
   loginBtn: {
+    marginTop: '10px',
     backgroundColor: '#3CB371',
-    color: '#FFF',
+    color: '#000000',
     padding: '10px 20px',
     border: 'none',
     borderRadius: '5px',
