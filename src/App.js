@@ -31,7 +31,6 @@ function App() {
 
   return (
     <>
-      <Navbar />
       <div className="container">
         <Routes>
           <Route path="/" element={isAuthenticated ? <Home /> : <SignIn />} />
