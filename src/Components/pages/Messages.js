@@ -1,4 +1,11 @@
+import Navbar from "../NavBar/Navbar";
+
 function Messages() {
-  return <h1>Messages</h1>;
+  return (
+    <>
+      <Navbar />
+      <h1>Messages</h1>;
+    </>
+  );
 }
 export default Messages;
