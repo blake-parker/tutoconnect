@@ -19,7 +19,7 @@ function App() {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       if (user) {
         setIsAuthenticated(true);
-        navigate("/home");
+        //navigate("/home");
       } else {
         setIsAuthenticated(false);
       }
