@@ -1,0 +1,52 @@
+.search h1{
+    text-align: center;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#search,
+#go {
+    width: 300px;
+    padding: 10px;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.button-container {
+    display: flex;
+    gap: 5px;
+}
+
+#button1,
+#button2,
+#go {
+    padding: 10px 20px;
+    font-size: 16px;
+}
+
+#search,
+#button1,
+#button2,
+#go {
+    background-color: lightgrey;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+#divider {
+    width: 1px;
+    background-color: #ccc;
+    margin: 0 5px;
+}
