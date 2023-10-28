@@ -8,7 +8,7 @@ function Search() {
         <form>
           <div className="input-container">
             <input type="text" id="search" placeholder="Search..." />
-            <input type="submit" value="Go" />
+            <input type="submit" id="go" value="Go" />
           </div>
           <div className="button-container">
             <button type="button" id="button1">

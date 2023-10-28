@@ -16,8 +16,7 @@
     align-items: center;
 }
 
-#search,
-#go {
+#search{
     width: 300px;
     padding: 10px;
     font-size: 18px;
@@ -30,16 +29,20 @@
 }
 
 #button1,
-#button2,
-#go {
+#button2{
     padding: 10px 20px;
     font-size: 16px;
 }
 
-#search,
 #button1,
 #button2,
-#go {
+#go :hover{
+    cursor: pointer;
+}
+
+#search,
+#button1,
+#button2 {
     background-color: lightgrey;
     border: 1px solid #ccc;
     border-radius: 20px;
