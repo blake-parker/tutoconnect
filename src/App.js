@@ -10,6 +10,8 @@ import SignIn from "./Components/pages/SignIn";
 import SignUp from "./Components/pages/SignUp";
 import { auth } from "./Components/firebase"; // Import auth from firebase.jsx
 import { Route, Routes, useNavigate } from "react-router-dom";
+import CreatePost from "./Components/pages/CreatePost";
+import Posts from "./Components/pages/Posts";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -39,6 +41,8 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/CreatePost" element={<CreatePost />} />
+          <Route path="/Posts" element={<Posts />} />
         </Routes>
       </div>
     </>

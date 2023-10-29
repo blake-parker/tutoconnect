@@ -29,6 +29,16 @@ function Search() {
     navigate("/CreatePost");
   };
 
+  const [search, setSearch] = useState("");
+  const handleInputChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const goHandleClick = () => {
+    navigate("/Posts");
+    localStorage.setItem("selected", JSON.stringify(sortBy));
+    localStorage.setItem("query", JSON.stringify(search));
+  };
   return (
     <>
       <Navbar />
@@ -36,7 +46,12 @@ function Search() {
         <h1>I'm looking for a...</h1>
         <form>
           <div className="input-container">
-            <input type="text" id="search" placeholder="" />
+            <input
+              type="text"
+              id="search"
+              placeholder=""
+              onChange={handleInputChange}
+            />
           </div>
           <div className="button-container">
             <div className="left-button-container">
@@ -57,7 +72,7 @@ function Search() {
                 Tutor
               </button>
             </div>
-            <button className="other-button" id="go">
+            <button className="other-button" id="go" onClick={goHandleClick}>
               Go
             </button>
           </div>
