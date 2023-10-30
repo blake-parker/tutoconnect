@@ -1,0 +1,27 @@
+
+.post-page-container{
+    display: flex;
+    flex-direction: row;
+}
+.post-search-container{
+    display: inline-block;
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 20px;
+    border-radius: 25px;
+    color: var(--white);
+    height: 100vh;
+    width: 15vw;
+    background-color: var(--dark-bg);
+}
+
+.posts-container{
+    display: inline-block;
+    background-color: var(--light-bg);
+    width: 80vw;
+    margin: 10px;
+    padding: 20px;
+    float: right;
+}
+
