@@ -21,7 +21,9 @@
     background-color: var(--light-bg);
     width: 80vw;
     margin: 10px;
+    margin-left: 20px;
     padding: 20px;
-    float: right;
+    border-radius: 25px;
+    
 }
 
