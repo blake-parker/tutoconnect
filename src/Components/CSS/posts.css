@@ -17,7 +17,8 @@
 }
 
 .posts-container{
-    display: inline-block;
+    display: flex;
+    flex-direction: row;
     background-color: var(--light-bg);
     width: 80vw;
     margin: 10px;
@@ -27,3 +28,19 @@
     
 }
 
+.post-img-container img{
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    justify-content: center;
+}
+
+.post-header{
+    display: flex;
+    flex-direction: row;
+}
+
+.post-content{
+    display: flex;
+    flex-direction: row;
+}
