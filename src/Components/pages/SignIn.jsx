@@ -53,7 +53,7 @@ function SignIn() {
 const styles = {
   container: {
     fontFamily: 'Arial, sans-serif',
-    backgroundColor: '#99a3a2',
+    backgroundColor: '--main-bg',
     padding: '30px',
     borderRadius: '10px',
     display: 'flex',

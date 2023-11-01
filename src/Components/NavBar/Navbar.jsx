@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import logo from "../../logo/small_logo.png"
 import "./Nav.css";
 
 function Navbar() {
   return (
     <nav className="nav">
       <Link to="/" className="site-title">
-        tutoConnect
+        <img src={logo} alt="" className="home-img"/>
       </Link>
       <ul className="nav-bar-elements">
         <li>
