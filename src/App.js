@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import db from "./Components/firebase";
 import { collection, onSnapshot } from "firebase/firestore";
 import Home from "./Components/pages/Home";
 import Messages from "./Components/pages/Messages";
@@ -8,7 +7,7 @@ import Search from "./Components/pages/Search";
 import Profile from "./Components/pages/Profile";
 import SignIn from "./Components/pages/SignIn";
 import SignUp from "./Components/pages/SignUp";
-import { auth } from "./Components/firebase"; // Import auth from firebase.jsx
+import { auth, db } from "./Components/firebase"; // Import auth from firebase.jsx
 import { Route, Routes, useNavigate } from "react-router-dom";
 import CreatePost from "./Components/pages/CreatePost";
 import Posts from "./Components/pages/Posts";

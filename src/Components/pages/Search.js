@@ -10,7 +10,7 @@ function Search() {
   const [isSelectedB1, setIsSelectedB1] = useState(false);
   const handleClick = () => {
     setIsSelectedB1(!isSelectedB1);
-    setSortBy("Student");
+    setSortBy("student");
     if (isSelectedB2) {
       setIsSelectedB2(false);
     }
@@ -18,7 +18,7 @@ function Search() {
 
   const [isSelectedB2, setIsSelectedB2] = useState(false);
   const handleClick2 = () => {
-    setSortBy("Tutor");
+    setSortBy("tutor");
     setIsSelectedB2(!isSelectedB2);
     if (isSelectedB1) {
       setIsSelectedB1(false);

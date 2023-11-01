@@ -9,21 +9,16 @@ import Navbar from "../NavBar/Navbar";
 function Posts() {
   const [posts, setPosts] = useState([]);
 
-  const fetchPost = async () => {
-    await getDocs(collection(db, "studentPosts")).then((querySnapshot) => {
-      const newData = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      setPosts(newData);
-      console.log(posts, newData);
-    });
-  };
+  const postCollectionRef = collection(db, "studentPosts");
 
   useEffect(() => {
-    fetchPost();
-  }, []);
+    const getPosts = async () => {
+      const data = await getDocs(postCollectionRef);
+      setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
 
+    getPosts();
+  });
   return (
     <>
       <Navbar />
@@ -32,9 +27,17 @@ function Posts() {
           <PostSearch />
         </div>
         <div className="posts">
-          <Post />
-          <Post />
-          <Post />
+          {posts.map((post) => {
+            return (
+              <Post
+                title={post.title}
+                author={post.author.name}
+                text={post.postText}
+                id={post.id}
+                authorID={post.author.id}
+              />
+            );
+          })}
         </div>
       </div>
     </>
