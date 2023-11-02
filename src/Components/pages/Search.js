@@ -2,6 +2,8 @@ import { useState } from "react";
 import Navbar from "../NavBar/Navbar";
 import "../pagesCSS/search.css";
 import { useNavigate } from "react-router-dom";
+import { addDoc, collection } from "firebase/firestore";
+import { db, auth } from "../firebase";
 
 function Search() {
   const navigate = useNavigate();
@@ -34,11 +36,17 @@ function Search() {
     setSearch(e.target.value);
   };
 
-  const goHandleClick = () => {
+  const postCollectionRef = collection(db, "userQueries");
+  const goHandleClick = async (e) => {
+    e.preventDefault();
+    await addDoc(postCollectionRef, {
+      authorID: auth.currentUser.uid,
+      selected: sortBy,
+      searchQuery: search,
+    });
     navigate("/Posts");
-    localStorage.setItem("selected", JSON.stringify(sortBy));
-    localStorage.setItem("query", JSON.stringify(search));
   };
+
   return (
     <>
       <Navbar />
