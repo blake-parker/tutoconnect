@@ -33,9 +33,7 @@ function App() {
     <>
       <div className="container">
         <Routes>
-          <Route path="/" element={isAuthenticated ? <Home /> : <SignIn />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/search" element={<Search />} />
+          <Route path="/" element={isAuthenticated ? <Search /> : <SignIn />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<SignIn />} />

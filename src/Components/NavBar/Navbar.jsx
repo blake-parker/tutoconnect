@@ -10,9 +10,6 @@ function Navbar() {
       </Link>
       <ul className="nav-bar-elements">
         <li>
-          <Link to="/search">Search</Link>
-        </li>
-        <li>
           <Link to="/messages">Messages</Link>
         </li>
         <li>
