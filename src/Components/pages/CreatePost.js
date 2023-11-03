@@ -9,7 +9,7 @@ function CreatePost() {
   const [postText, setPostText] = useState("");
   const [postType, setPostType] = useState("student");
 
-  let postCollectionRef;
+  let postCollectionRef = collection(db, "studentPosts");
   if (postType === "student") {
     postCollectionRef = collection(db, "studentPosts");
   } else if (postType === "tutor") {
@@ -23,7 +23,8 @@ function CreatePost() {
       postText,
       author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
     });
-    navigate("/Posts");
+    alert("Your post has been created successfully!");
+    navigate("/");
   };
 
   const handlePostTypeChange = (e) => {

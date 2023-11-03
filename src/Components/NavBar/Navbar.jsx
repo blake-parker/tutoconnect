@@ -2,10 +2,15 @@ import { Link } from "react-router-dom";
 import logo from "../../logo/small_logo.png"
 import "./Nav.css";
 
-function Navbar() {
+function Navbar({goClicked}) {
+  const handleClick = () =>{
+    if (goClicked != null){
+      goClicked();
+    }
+  }
   return (
     <nav className="nav">
-      <Link to="/" className="site-title">
+      <Link to="/" className="site-title" onClick={handleClick}>
         <img src={logo} alt="" className="home-img"/>
       </Link>
       <ul className="nav-bar-elements">

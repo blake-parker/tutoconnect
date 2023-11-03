@@ -42,11 +42,15 @@ function Search() {
     setGoClicked(true);
   };
 
+  const goFalse = () => {
+    setGoClicked(false);
+  };
+
   const [goClicked, setGoClicked] = useState(false);
 
   return (
     <>
-      <Navbar />
+      <Navbar goClicked={goFalse} />
       {!goClicked ? (
         <div className="search">
           <h1>I'm looking for a...</h1>
@@ -92,7 +96,11 @@ function Search() {
           </button>
         </div>
       ) : (
-        <Posts postType={sortBy} />
+        <Posts
+          postType={sortBy}
+          handleClick={handleClick}
+          handleClick2={handleClick2}
+        />
       )}
     </>
   );
