@@ -3,7 +3,7 @@ import { useState } from "react";
 import "../CSS/posts.css";
 import "../CSS/posts-search.css";
 
-function PostSearch({ postType, hc, hc2 }) {
+function PostSearch({ hc, hc2 }) {
   const [isSelectedB1, setIsSelectedB1] = useState(false);
   const [isSelectedB2, setIsSelectedB2] = useState(false);
 
