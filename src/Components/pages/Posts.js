@@ -6,10 +6,10 @@ import Post from "../PostPage/Post";
 import "../CSS/posts.css";
 import Navbar from "../NavBar/Navbar";
 
-function Posts() {
+function Posts({ postType }) {
   const [posts, setPosts] = useState([]);
 
-  const postCollectionRef = collection(db, "studentPosts");
+  const postCollectionRef = collection(db, postType);
 
   useEffect(() => {
     const getPosts = async () => {
@@ -21,7 +21,6 @@ function Posts() {
   });
   return (
     <>
-      <Navbar />
       <div className="post-page-container">
         <div className="search-bar">
           <PostSearch />

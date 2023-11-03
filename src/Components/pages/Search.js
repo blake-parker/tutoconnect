@@ -4,6 +4,7 @@ import "../pagesCSS/search.css";
 import { useNavigate } from "react-router-dom";
 import { addDoc, collection } from "firebase/firestore";
 import { db, auth } from "../firebase";
+import Posts from "./Posts";
 
 function Search() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ function Search() {
   const [isSelectedB1, setIsSelectedB1] = useState(false);
   const handleClick = () => {
     setIsSelectedB1(!isSelectedB1);
-    setSortBy("student");
+    setSortBy("studentPosts");
     if (isSelectedB2) {
       setIsSelectedB2(false);
     }
@@ -20,7 +21,7 @@ function Search() {
 
   const [isSelectedB2, setIsSelectedB2] = useState(false);
   const handleClick2 = () => {
-    setSortBy("tutor");
+    setSortBy("tutorPosts");
     setIsSelectedB2(!isSelectedB2);
     if (isSelectedB1) {
       setIsSelectedB1(false);
@@ -36,63 +37,63 @@ function Search() {
     setSearch(e.target.value);
   };
 
-  const postCollectionRef = collection(db, "userQueries");
   const goHandleClick = async (e) => {
     e.preventDefault();
-    await addDoc(postCollectionRef, {
-      authorID: auth.currentUser.uid,
-      selected: sortBy,
-      searchQuery: search,
-    });
-    navigate("/Posts");
+    setGoClicked(true);
   };
+
+  const [goClicked, setGoClicked] = useState(false);
 
   return (
     <>
       <Navbar />
-      <div className="search">
-        <h1>I'm looking for a...</h1>
-        <form>
-          <div className="input-container">
-            <input
-              type="text"
-              id="search"
-              placeholder=""
-              onChange={handleInputChange}
-            />
-          </div>
-          <div className="button-container">
-            <div className="left-button-container">
-              <button
-                className={isSelectedB1 ? "selected-button" : "normal-button"}
-                type="button"
-                id="button1"
-                onClick={handleClick}
-              >
-                Student
-              </button>
-              <button
-                className={isSelectedB2 ? "selected-button" : "normal-button"}
-                type="button"
-                id="button2"
-                onClick={handleClick2}
-              >
-                Tutor
+      {!goClicked ? (
+        <div className="search">
+          <h1>I'm looking for a...</h1>
+          <form>
+            <div className="input-container">
+              <input
+                type="text"
+                id="search"
+                placeholder=""
+                onChange={handleInputChange}
+              />
+            </div>
+            <div className="button-container">
+              <div className="left-button-container">
+                <button
+                  className={isSelectedB1 ? "selected-button" : "normal-button"}
+                  type="button"
+                  id="button1"
+                  onClick={handleClick}
+                >
+                  Student
+                </button>
+                <button
+                  className={isSelectedB2 ? "selected-button" : "normal-button"}
+                  type="button"
+                  id="button2"
+                  onClick={handleClick2}
+                >
+                  Tutor
+                </button>
+              </div>
+              <button className="other-button" id="go" onClick={goHandleClick}>
+                Go
               </button>
             </div>
-            <button className="other-button" id="go" onClick={goHandleClick}>
-              Go
-            </button>
-          </div>
-        </form>
-        <button
-          className="other-button"
-          id="create-post"
-          onClick={createPostHandleClick}
-        >
-          Create Post
-        </button>
-      </div>
+          </form>
+          <button
+            className="other-button"
+            id="create-post"
+            onClick={createPostHandleClick}
+          >
+            Create Post
+          </button>
+        </div>
+      ) : (
+        <Posts postType={sortBy} />
+      )}
     </>
   );
 }
