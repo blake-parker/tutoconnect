@@ -6,7 +6,13 @@ import Post from "../PostPage/Post";
 import "../CSS/posts.css";
 import Navbar from "../NavBar/Navbar";
 
-function Posts({ postType, handleClick, handleClick2 }) {
+function Posts({
+  postType,
+  handleClick,
+  handleClick2,
+  selectedB1,
+  selectedB2,
+}) {
   const [posts, setPosts] = useState([]);
 
   const postCollectionRef = collection(db, postType);
@@ -23,7 +29,13 @@ function Posts({ postType, handleClick, handleClick2 }) {
     <>
       <div className="post-page-container">
         <div className="search-bar">
-          <PostSearch postType={postType} hc={handleClick} hc2={handleClick2} />
+          <PostSearch
+            postType={postType}
+            hc={handleClick}
+            hc2={handleClick2}
+            sB1={selectedB1}
+            sB2={selectedB2}
+          />
         </div>
         <div className="posts">
           {posts.map((post) => {

@@ -100,6 +100,8 @@ function Search() {
           postType={sortBy}
           handleClick={handleClick}
           handleClick2={handleClick2}
+          selectedB1={isSelectedB1}
+          selectedB2={isSelectedB2}
         />
       )}
     </>
