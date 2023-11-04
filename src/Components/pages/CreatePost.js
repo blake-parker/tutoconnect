@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import "../pagesCSS/createPost.css";
 import { useNavigate } from "react-router-dom";
@@ -22,6 +22,7 @@ function CreatePost() {
       title,
       postText,
       author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
+      timestamp: serverTimestamp(),
     });
     alert("Your post has been created successfully!");
     navigate("/");

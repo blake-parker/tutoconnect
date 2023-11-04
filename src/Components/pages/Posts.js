@@ -1,4 +1,4 @@
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { useState, useEffect } from "react";
 import PostSearch from "../PostPage/PostSearch";
