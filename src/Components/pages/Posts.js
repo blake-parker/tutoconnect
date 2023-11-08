@@ -1,5 +1,5 @@
-import { getDocs, collection, serverTimestamp } from "firebase/firestore";
-import { auth, db } from "../firebase";
+import { getDocs, collection, query, where } from "firebase/firestore";
+import { db } from "../firebase";
 import { useState, useEffect } from "react";
 import PostSearch from "../PostPage/PostSearch";
 import Post from "../PostPage/Post";
@@ -15,16 +15,18 @@ function Posts({
 }) {
   const [posts, setPosts] = useState([]);
 
-  const postCollectionRef = collection(db, postType);
+  const postCollectionRef = collection(db, "posts");
+  const postQuery = query(postCollectionRef, where("postType", "==", postType));
 
   useEffect(() => {
     const getPosts = async () => {
-      const data = await getDocs(postCollectionRef);
+      const data = await getDocs(postQuery);
       setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
     getPosts();
-  });
+  }, [postQuery]);
+
   return (
     <>
       <div className="post-page-container">
@@ -55,4 +57,5 @@ function Posts({
     </>
   );
 }
+
 export default Posts;

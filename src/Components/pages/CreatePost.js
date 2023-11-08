@@ -9,12 +9,7 @@ function CreatePost() {
   const [postText, setPostText] = useState("");
   const [postType, setPostType] = useState("student");
 
-  let postCollectionRef = collection(db, "studentPosts");
-  if (postType === "student") {
-    postCollectionRef = collection(db, "studentPosts");
-  } else if (postType === "tutor") {
-    postCollectionRef = collection(db, "tutorPosts");
-  }
+  const postCollectionRef = collection(db, "posts");
 
   let navigate = useNavigate();
   const createPost = async () => {
@@ -23,6 +18,7 @@ function CreatePost() {
       postText,
       author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
       timestamp: serverTimestamp(),
+      postType,
     });
     alert("Your post has been created successfully!");
     navigate("/");

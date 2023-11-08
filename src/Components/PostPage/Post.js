@@ -5,7 +5,7 @@ import { auth, db } from "../firebase";
 
 function Post({ title, author, text, id, authorID, postType }) {
   const deletePost = async (pid) => {
-    const postDoc = doc(db, postType, pid);
+    const postDoc = doc(db, "posts", pid);
     await deleteDoc(postDoc);
   };
 
