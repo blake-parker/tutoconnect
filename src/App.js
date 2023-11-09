@@ -4,7 +4,7 @@ import { collection, onSnapshot } from "firebase/firestore";
 import Home from "./Components/pages/Home";
 import Messages from "./Components/pages/Messages";
 import Search from "./Components/pages/Search";
-import Profile from "./Components/pages/Profile";
+import Profile from "./Components/pages/Profiles/Profile";
 import SignIn from "./Components/pages/SignIn";
 import SignUp from "./Components/pages/SignUp";
 import { auth, db } from "./Components/firebase"; // Import auth from firebase.jsx
