@@ -1,4 +1,10 @@
-import { getDocs, collection, query, where } from "firebase/firestore";
+import {
+  getDocs,
+  collection,
+  query,
+  where,
+  onSnapshot,
+} from "firebase/firestore";
 import { db } from "../firebase";
 import { useState, useEffect } from "react";
 import PostSearch from "../PostPage/PostSearch";
@@ -15,17 +21,26 @@ function Posts({
 }) {
   const [posts, setPosts] = useState([]);
 
-  const postCollectionRef = collection(db, "posts");
-  const postQuery = query(postCollectionRef, where("postType", "==", postType));
-
   useEffect(() => {
-    const getPosts = async () => {
-      const data = await getDocs(postQuery);
-      setPosts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
+    const postCollectionRef = collection(db, "posts");
+    const postQuery = query(
+      postCollectionRef,
+      where("postType", "==", postType)
+    );
 
-    getPosts();
-  }, [postQuery]);
+    const unsubscribe = onSnapshot(postQuery, (querySnapshot) => {
+      const newPosts = [];
+      querySnapshot.forEach((doc) => {
+        newPosts.push({ ...doc.data(), id: doc.id });
+      });
+      setPosts(newPosts);
+    });
+
+    return () => {
+      // Unsubscribe from the snapshot listener when the component unmounts
+      unsubscribe();
+    };
+  }, [postType]);
 
   return (
     <>
