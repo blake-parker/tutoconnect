@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@300&display=swap');
 
-.body body {
+
+.body {
     font-family: 'Kumbh Sans', sans-serif;
     display: flex;
     justify-content: center;
