@@ -84,4 +84,5 @@ function PostSearch({ hc, hc2, sB1, sB2 }) {
     </div>
   );
 }
+
 export default PostSearch;

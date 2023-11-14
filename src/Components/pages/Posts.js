@@ -20,6 +20,9 @@ function Posts({
   selectedB2,
 }) {
   const [posts, setPosts] = useState([]);
+  const [query1, setQuery1] = useState("");
+  const [query2, setQuery2] = useState("");
+  const [query3, setQuery3] = useState("");
 
   useEffect(() => {
     const postCollectionRef = collection(db, "posts");
@@ -37,7 +40,6 @@ function Posts({
     });
 
     return () => {
-      // Unsubscribe from the snapshot listener when the component unmounts
       unsubscribe();
     };
   }, [postType]);

@@ -13,6 +13,7 @@ function Search() {
   const [isSelectedB1, setIsSelectedB1] = useState(false);
   const handleClick = () => {
     setIsSelectedB1(!isSelectedB1);
+    console.log(sortBy);
     setSortBy("student");
     if (isSelectedB2) {
       setIsSelectedB2(false);
