@@ -1,0 +1,50 @@
+.searchBar-container2 {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#search2 {
+    width: 100%;
+    height: 25px;
+    border: none;
+    outline: none;
+}
+
+#button1-s {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    width: 40%;
+    height: 40%;
+    padding: 10px;
+}
+
+#button2-s {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    width: 40%;
+    height: 40%;
+    padding: 10px;
+}
+
+.search-button {
+    background-color: var(--button-green);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-left: 2vw;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.left-button-container-s {
+    display: flex;
+    flex-direction: row;
+}
+
+
+/* VVVVVVVVVVVVVV FILTER STUFF VVVVVVVVVVVVVV */

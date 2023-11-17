@@ -3,9 +3,9 @@ import logo from "../../logo/small_logo.png";
 import { deleteDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 
-function Post({ title, author, text, id, authorID }) {
+function Post({ title, author, text, id, authorID, postType }) {
   const deletePost = async (pid) => {
-    const postDoc = doc(db, "studentPosts", pid);
+    const postDoc = doc(db, "posts", pid);
     await deleteDoc(postDoc);
   };
 
@@ -26,7 +26,13 @@ function Post({ title, author, text, id, authorID }) {
             </p>
             <div className="delete-post">
               {authorID === auth.currentUser.uid && (
-                <button onClick={() => deletePost(id)}>&#128465;</button>
+                <button
+                  onClick={() => {
+                    deletePost(id);
+                  }}
+                >
+                  &#128465;
+                </button>
               )}
             </div>
           </div>

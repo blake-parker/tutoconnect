@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db, auth } from "../firebase";
 import "../pagesCSS/createPost.css";
 import { useNavigate } from "react-router-dom";
@@ -9,12 +9,7 @@ function CreatePost() {
   const [postText, setPostText] = useState("");
   const [postType, setPostType] = useState("student");
 
-  let postCollectionRef;
-  if (postType === "student") {
-    postCollectionRef = collection(db, "studentPosts");
-  } else if (postType === "tutor") {
-    postCollectionRef = collection(db, "tutorPosts");
-  }
+  const postCollectionRef = collection(db, "posts");
 
   let navigate = useNavigate();
   const createPost = async () => {
@@ -22,8 +17,11 @@ function CreatePost() {
       title,
       postText,
       author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
+      timestamp: serverTimestamp(),
+      postType,
     });
-    navigate("/Posts");
+    alert("Your post has been created successfully!");
+    navigate("/");
   };
 
   const handlePostTypeChange = (e) => {

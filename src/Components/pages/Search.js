@@ -13,7 +13,8 @@ function Search() {
   const [isSelectedB1, setIsSelectedB1] = useState(false);
   const handleClick = () => {
     setIsSelectedB1(!isSelectedB1);
-    setSortBy("studentPosts");
+    console.log(sortBy);
+    setSortBy("student");
     if (isSelectedB2) {
       setIsSelectedB2(false);
     }
@@ -21,7 +22,7 @@ function Search() {
 
   const [isSelectedB2, setIsSelectedB2] = useState(false);
   const handleClick2 = () => {
-    setSortBy("tutorPosts");
+    setSortBy("tutor");
     setIsSelectedB2(!isSelectedB2);
     if (isSelectedB1) {
       setIsSelectedB1(false);
@@ -42,11 +43,15 @@ function Search() {
     setGoClicked(true);
   };
 
+  const goFalse = () => {
+    setGoClicked(false);
+  };
+
   const [goClicked, setGoClicked] = useState(false);
 
   return (
     <>
-      <Navbar />
+      <Navbar goClicked={goFalse} />
       {!goClicked ? (
         <div className="search">
           <h1>I'm looking for a...</h1>
@@ -92,7 +97,13 @@ function Search() {
           </button>
         </div>
       ) : (
-        <Posts postType={sortBy} />
+        <Posts
+          postType={sortBy}
+          handleClick={handleClick}
+          handleClick2={handleClick2}
+          selectedB1={isSelectedB1}
+          selectedB2={isSelectedB2}
+        />
       )}
     </>
   );
