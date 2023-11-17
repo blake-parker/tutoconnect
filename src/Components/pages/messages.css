@@ -1,0 +1,176 @@
+.messages{
+    background-color: #CDD7D6;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.messagesContainer{
+    border-radius: 10px;
+    display: flex;
+    width: 95%;
+    height: 90%;
+    gap: 1.5%;
+}
+
+.leftSidebar{
+    flex: 1;
+    background-color: #809996;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.chats{
+    flex: 2;
+    background-color: #ADC2C0;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.rightSidebar{
+    flex: 1;
+    background-color: #809996;
+    border-radius: 10px;
+    display: flex;
+    gap: 1vh;
+    flex-direction: column;
+    align-items: center;
+}
+
+.displayProfilePic {
+    width: 10vw;
+    height: 10vw;
+    min-width: 100px;
+    min-height: 100px;
+    border-radius: 50%;
+    margin: 3vh 0 0 0;
+    background-color: transparent;
+}
+
+.userName{
+    font-size: 40px;
+    font-family: 'Kumbh Sans', sans-serif;
+    color: white;
+}
+
+.userChat{
+    display: flex;
+    align-items: center;
+    gap: 1vw;
+    cursor: pointer;
+    background-color: #597370;
+}
+
+.userChat:hover{
+    background-color: #597370;
+}
+
+.userChatInfo span{
+    font-size: 30px;
+    font-family: 'Kumbh Sans', sans-serif;
+    color: white;
+}
+
+.messagingProfilePic {
+    width: 4vw;
+    height: 4vw;
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 50%;
+    margin-left: 1vw;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    background-color: transparent;
+}
+
+.inputBar{
+    display: flex;
+    margin-top: auto;
+    margin-bottom: 10px;
+    height: 10%;
+    justify-content: space-between;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.chatInput{
+    background-color: white;
+    width: 75%;
+    border-radius: 10px;
+    border: none;
+    font-size: 20px;
+    font-family: 'Kumbh Sans', sans-serif;
+}
+
+.startCall{
+    width: 10%;
+    background-color: #3CB371;
+    color: white;
+    font-size: 20px;
+    font-family: 'Kumbh Sans', sans-serif;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.sendMessage{
+    width: 10%;
+    background-color: #3CB371;
+    color: white;
+    font-size: 20px;
+    font-family: 'Kumbh Sans', sans-serif;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.chatInput:focus{
+    outline: none;
+}
+
+.messageContainer{
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    overflow: auto;
+}
+
+.message{
+    display: flex;
+    margin-top: 10px;
+    margin-left: 10px;
+    align-items: center;
+}
+
+.inTextPic{
+    width: 2vw;
+    height: 2vw;
+    min-width: 40px;
+    min-height: 40px;
+    border-radius: 50%;
+    background-color: transparent;
+    margin-right: 10px;
+}
+
+.messageBody{
+    max-width: 70%;
+    background-color: white;
+    padding: 1vh 1vw;
+    border-radius: 0px 10px 10px 10px;
+}
+
+.owner{
+    flex-direction: row-reverse;
+}
+.owner .inTextPic{
+    margin-left: 10px;
+}
+
+.owner .messageBody{
+    border-radius: 10px 0px 10px 10px;
+}

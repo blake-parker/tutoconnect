@@ -3,7 +3,8 @@ import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../firebase';
 import { useNavigate } from 'react-router-dom';
 import "../CSS/SignUp.css";
-
+import { doc, setDoc } from "firebase/firestore";
+import { db} from "../firebase";
 
 function SignUp() {
   const [email, setEmail] = useState('');
@@ -19,6 +20,17 @@ function SignUp() {
       await updateProfile(user, {
         displayName: username
       });
+
+      //create user on firestore
+      await setDoc(doc(db, "users", userCred.user.uid), {
+        uid: userCred.user.uid,
+        username,
+        email,
+      });
+
+      //create empty user chats on firestore
+      await setDoc(doc(db, "userChats", userCred.user.uid), {});
+
       navigate('/');
     } catch (error) {
       console.error('Error signing up:', error.message);
