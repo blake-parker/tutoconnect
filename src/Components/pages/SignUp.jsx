@@ -175,6 +175,7 @@ function SignUp() {
         />
 
         <h3 style={{ ...styles.header, marginTop: '25px' }}>Payment Information</h3>
+        <h3 style={{ ...styles.header, marginTop: '5px' }}>You will be billed $4.99 every 30 days.</h3>
         <input
           type="text"
           placeholder="Credit Card Number"
