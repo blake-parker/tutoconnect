@@ -13,10 +13,13 @@ Modal.setAppElement("#root");
 
 const ProfilePage = ({ userPhotoURL, username }) => {
   const [appointments, setAppointments] = useState([]);
+  const [classes, setClasses] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [newAppointment, setNewAppointment] = useState({ title: "", date: "" });
   const [posts, setPosts] = useState([]);
   const [rating, setRating] = useState(0);
+  const [classModalIsOpen, setClassModalIsOpen] = useState(false);
+  const [newClass, setNewClass] = useState("");
   const navigate = useNavigate();
 
   const fetchAppointments = async () => {
@@ -30,6 +33,14 @@ const ProfilePage = ({ userPhotoURL, username }) => {
     }
   };
 
+  const fetchClasses = async () => {
+    const user = auth.currentUser;
+    if (user) {
+      const classesRef = collection(db, "users", user.uid, "classes");
+      const classDocs = await getDocs(classesRef);
+      setClasses(classDocs.docs.map((doc) => doc.data().name));
+    }
+  };
   useEffect(() => {
     const user = auth.currentUser;
     const postCollectionRef = collection(db, "posts");
@@ -50,9 +61,9 @@ const ProfilePage = ({ userPhotoURL, username }) => {
       unsubscribe();
     };
   }, []);
-
   useEffect(() => {
     fetchAppointments();
+    fetchClasses();
   }, []);
 
   useEffect(() => {
@@ -74,6 +85,17 @@ const ProfilePage = ({ userPhotoURL, username }) => {
     }
   };
 
+  const handleAddClass = async () => {
+    const user = auth.currentUser;
+    if (user) {
+      const classesRef = collection(db, "users", user.uid, "classes");
+      await addDoc(classesRef, { name: newClass });
+      setNewClass("");
+      closeClassModal();
+      await fetchClasses();
+    }
+  };
+
   const handleSignOut = async () => {
     try {
       await signOut(auth);
@@ -89,6 +111,14 @@ const ProfilePage = ({ userPhotoURL, username }) => {
 
   const closeModal = () => {
     setModalIsOpen(false);
+  };
+
+  const openClassModal = () => {
+    setClassModalIsOpen(true);
+  };
+
+  const closeClassModal = () => {
+    setClassModalIsOpen(false);
   };
 
   const handleAppointmentChange = (e) => {
@@ -251,9 +281,11 @@ const ProfilePage = ({ userPhotoURL, username }) => {
         </button>
         <div style={{ width: "100%" }}>
           <h3 style={textStyle}>Classes Taken</h3>
-          <div style={classItemStyle}>CS4101</div>
-          <div style={classItemStyle}>CS1351</div>
-          <div style={classItemStyle}>CS4101</div>
+          {classes.map((className, index) => (
+            <div key={index} style={classItemStyle}>
+              {className}
+            </div>
+          ))}
         </div>
       </div>
 
@@ -284,37 +316,47 @@ const ProfilePage = ({ userPhotoURL, username }) => {
         })}
       </div>
 
-      <div style={sidebarStyle}>
-        <h2 style={textStyle}>Upcoming Appointments</h2>
-        {appointments.map((appointment, index) => (
-          <div
-            key={index}
+      <div
+        style={{
+          ...sidebarStyle,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+        }}
+      >
+        <div>
+          <h2 style={textStyle}>Upcoming Appointments</h2>
+          {appointments.map((appointment, index) => (
+            <div
+              key={index}
+              style={{
+                ...classItemStyle,
+                background: "#ffffff",
+                color: "#000000",
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <h3>{appointment.title}</h3>
+              <p>{appointment.date}</p>
+            </div>
+          ))}
+          <button
             style={{
-              ...classItemStyle,
-              background: "#ffffff",
-              color: "#000000",
-              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+              ...buttonStyle,
+              background: "#3cb371",
+              textDecoration: "none",
             }}
+            onClick={openModal}
           >
-            <h3>{appointment.title}</h3>
-            <p>{appointment.date}</p>
-          </div>
-        ))}
-        <button
-          style={{
-            ...buttonStyle,
-            background: "#3cb371",
-            textDecoration: "none",
-          }}
-          onClick={openModal}
-        >
-          Add Appointment
-        </button>
+            Add Appointment
+          </button>
+        </div>
         <button onClick={handleSignOut} style={logOutButtonStyle}>
           Log Out
         </button>
       </div>
 
+      {/* Modals */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
@@ -344,6 +386,30 @@ const ProfilePage = ({ userPhotoURL, username }) => {
         </button>
         <button
           onClick={closeModal}
+          style={{ ...modalButtonStyle, background: "#dc3545" }}
+        >
+          Cancel
+        </button>
+      </Modal>
+
+      <Modal
+        isOpen={classModalIsOpen}
+        onRequestClose={closeClassModal}
+        style={modalStyle}
+      >
+        <h2 style={{ color: "#ffffff", textAlign: "center" }}>Add New Class</h2>
+        <input
+          type="text"
+          placeholder="Class Name"
+          value={newClass}
+          onChange={(e) => setNewClass(e.target.value)}
+          style={modalInputStyle}
+        />
+        <button onClick={handleAddClass} style={modalButtonStyle}>
+          Add Class
+        </button>
+        <button
+          onClick={closeClassModal}
           style={{ ...modalButtonStyle, background: "#dc3545" }}
         >
           Cancel
