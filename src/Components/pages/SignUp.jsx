@@ -4,9 +4,6 @@ import { setDoc, doc } from 'firebase/firestore';
 import { auth, db, storage } from '../firebase'; // Ensure you export `storage` from your firebase.js
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
-import "../CSS/SignUp.css";
-import { doc, setDoc } from "firebase/firestore";
-import { db} from "../firebase";
 
 function SignUp() {
   const [email, setEmail] = useState('');

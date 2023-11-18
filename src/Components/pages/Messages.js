@@ -6,7 +6,6 @@ import "./messages.css";
 function Messages() {
   return (
     <>
-      <Navbar />
       <div className="messages">
         <div className="messagesContainer">
           <LeftSidebar />
