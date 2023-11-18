@@ -1,0 +1,40 @@
+.lp-container{
+    display: flex;
+    flex-direction: row;
+    background-color: var(--dark-bg);
+    margin: 5vh;
+    border-radius: 25px;
+    height: 80vh;
+}
+
+.picture{
+    margin-left: 10vw;
+}
+
+.picture img{
+    width: 650px;
+    height: 650px;
+}
+
+.welcome{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.welcome h1{
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.welcome button{
+    background-color: var(--button-green);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 15px;
+}
