@@ -10,6 +10,7 @@ function CreatePost() {
   const [postType, setPostType] = useState("student");
 
   const postCollectionRef = collection(db, "posts");
+  const randomRating = Math.floor(Math.random() * 5) + 1;
 
   let navigate = useNavigate();
   const createPost = async () => {
@@ -20,6 +21,7 @@ function CreatePost() {
         name: auth.currentUser.displayName,
         id: auth.currentUser.uid,
         pic: auth.currentUser.photoURL,
+        rating: randomRating,
       },
       timestamp: serverTimestamp(),
       postType,

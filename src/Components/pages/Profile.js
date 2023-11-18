@@ -7,6 +7,7 @@ import { collection, addDoc, getDocs } from "firebase/firestore";
 import { query, where, onSnapshot } from "firebase/firestore";
 import { signOut } from "firebase/auth";
 import Post from "../PostPage/Post";
+import Star from "../Star";
 
 Modal.setAppElement("#root");
 
@@ -15,6 +16,7 @@ const ProfilePage = ({ userPhotoURL, username }) => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [newAppointment, setNewAppointment] = useState({ title: "", date: "" });
   const [posts, setPosts] = useState([]);
+  const [rating, setRating] = useState(0);
   const navigate = useNavigate();
 
   const fetchAppointments = async () => {
@@ -53,6 +55,14 @@ const ProfilePage = ({ userPhotoURL, username }) => {
     fetchAppointments();
   }, []);
 
+  useEffect(() => {
+    const fetch = async () => {
+      const result = await calculateAverageRating();
+      setRating(result);
+    };
+    fetch();
+  }, []);
+
   const handleAddAppointment = async () => {
     const user = auth.currentUser;
     if (user) {
@@ -85,6 +95,25 @@ const ProfilePage = ({ userPhotoURL, username }) => {
     setNewAppointment({ ...newAppointment, [e.target.name]: e.target.value });
   };
 
+  const calculateAverageRating = async () => {
+    const postCollectionRef = collection(db, "posts");
+    const querySnapshot = await getDocs(postCollectionRef);
+
+    let totalRating = 0;
+    let totalPosts = 0;
+
+    querySnapshot.forEach((doc) => {
+      const post = doc.data();
+
+      if (post.author && typeof post.author.rating === "number") {
+        totalRating += post.author.rating;
+        totalPosts += 1;
+      }
+    });
+
+    const averageRating = totalRating / totalPosts;
+    return averageRating;
+  };
   // Inline styles
   const pageStyle = {
     display: "flex",
@@ -108,6 +137,7 @@ const ProfilePage = ({ userPhotoURL, username }) => {
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
     flex: "0 0 250px",
     height: "90vh",
+    width: "auto",
     overflowY: "auto",
     margin: "0 20px",
   };
@@ -214,11 +244,11 @@ const ProfilePage = ({ userPhotoURL, username }) => {
         <h2 style={textStyle}>{username || "Username"}</h2>
         <p style={textStyle}>class of 2025</p>
         <div>
-          {[...Array(5)].map((_, i) => (
-            <FaStar key={i} size={25} style={{ color: "#ffc107" }} />
-          ))}
+          <Star x={rating} />
         </div>
-        <button style={buttonStyle}>view reviews</button>
+        <button onClick={calculateAverageRating} style={buttonStyle}>
+          view reviews
+        </button>
         <div style={{ width: "100%" }}>
           <h3 style={textStyle}>Classes Taken</h3>
           <div style={classItemStyle}>CS4101</div>
@@ -248,6 +278,7 @@ const ProfilePage = ({ userPhotoURL, username }) => {
               authorID={post.author.id}
               userProfilePicture={post.author.pic}
               width="65vw"
+              rating={rating}
             />
           );
         })}

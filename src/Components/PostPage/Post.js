@@ -5,6 +5,7 @@ import { auth, db } from "../firebase";
 import { useState } from "react";
 import Modal from "../Modal";
 import { useNavigate } from "react-router";
+import Star from "../Star";
 
 function Post({
   title,
@@ -15,6 +16,7 @@ function Post({
   postType,
   userProfilePicture,
   width,
+  rating,
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -46,7 +48,9 @@ function Post({
         <div className="post-content-container">
           <div className="post-header">
             <h1>{title}</h1>
-            <p>rating</p>
+            <p>
+              <Star x={rating} />
+            </p>
             <div className="delete-post">
               {authorID === auth.currentUser.uid && (
                 <>

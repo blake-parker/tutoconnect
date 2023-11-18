@@ -23,6 +23,7 @@ function Posts({
   const [query1, setQuery1] = useState("");
   const [query2, setQuery2] = useState("");
   const [query3, setQuery3] = useState("");
+  const [r, setR] = useState(0);
 
   useEffect(() => {
     const postCollectionRef = collection(db, "posts");
@@ -43,6 +44,34 @@ function Posts({
       unsubscribe();
     };
   }, [postType]);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const result = await calculateAverageRating();
+      setR(result);
+    };
+    fetch();
+  }, []);
+
+  const calculateAverageRating = async () => {
+    const postCollectionRef = collection(db, "posts");
+    const querySnapshot = await getDocs(postCollectionRef);
+
+    let totalRating = 0;
+    let totalPosts = 0;
+
+    querySnapshot.forEach((doc) => {
+      const post = doc.data();
+
+      if (post.author && typeof post.author.rating === "number") {
+        totalRating += post.author.rating;
+        totalPosts += 1;
+      }
+    });
+
+    const averageRating = totalRating / totalPosts;
+    return averageRating;
+  };
 
   return (
     <>
@@ -68,6 +97,7 @@ function Posts({
                 postType={postType}
                 userProfilePicture={post.author.pic}
                 width="80vw"
+                rating={r}
               />
             );
           })}
