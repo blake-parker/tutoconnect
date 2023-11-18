@@ -68,7 +68,7 @@ function PostSearch({ hc, hc2, sB1, sB2 }) {
         <div className="filter-text">Filter By:</div>
         <div className="everything-else">
           <div className="rating-filter">
-            Rating
+            Rating:
             <div className="stars">
               <StarRating />
             </div>

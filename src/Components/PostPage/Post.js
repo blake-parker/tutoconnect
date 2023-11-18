@@ -4,6 +4,7 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 import { useState } from "react";
 import Modal from "../Modal";
+import { useNavigate } from "react-router";
 
 function Post({
   title,
@@ -29,6 +30,11 @@ function Post({
     await deleteDoc(postDoc);
     closeModal();
   };
+
+  const nav = useNavigate();
+  const redirect = () => {
+    nav("/messages");
+  };
   return (
     <>
       <div className="posts-container">
@@ -39,17 +45,14 @@ function Post({
         <div className="post-content-container">
           <div className="post-header">
             <h1>{title}</h1>
-            <p>
-              rating
-              <br />
-              view ratings
-            </p>
+            <p>rating</p>
             <div className="delete-post">
               {authorID === auth.currentUser.uid && (
                 <>
                   <button onClick={openModal}>&#128465;</button>
                   <Modal
                     isOpen={isModalOpen}
+                    onClose={closeModal}
                     onConfirm={() => {
                       deletePost(id);
                     }}
@@ -62,7 +65,9 @@ function Post({
           </div>
           <div className="post-content">
             <p>{text}</p>
-            <button onClick={openModal}>message</button>
+            <button onClick={redirect} className="message-button">
+              message
+            </button>
           </div>
         </div>
       </div>

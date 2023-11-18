@@ -25,7 +25,7 @@ function CreatePost() {
       postType,
     });
     alert("Your post has been created successfully!");
-    navigate("/");
+    navigate("/search");
   };
 
   const handlePostTypeChange = (e) => {

@@ -173,6 +173,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 15vh;
 }
 
 .create-post-button button {
@@ -180,6 +181,7 @@
     color: var(--white);
     border: none;
     border-radius: 5px;
+    width: 500px;
     padding: 10px 20px;
     cursor: pointer;
     transition: background-color 0.3s;

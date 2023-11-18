@@ -7,37 +7,111 @@ font-family: 'Kumbh Sans', sans-serif;
     display: flex;
     flex-direction: row;
 }
-.posts-container{
+.posts-container {
     display: flex;
     flex-direction: row;
     background-color: var(--light-bg);
     width: 80vw;
     margin: 10px;
-    margin-left: 20px;
     padding: 20px;
     border-radius: 25px;
-    
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.post-img-container img{
+.post-img-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post-img-container img {
     width: 100px;
     height: 100px;
-    padding: 10px;
-    justify-content: center;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 2px solid black;
 }
 
-.post-header{
+.post-img-container p {
+    text-align: center;
+    color: black;
+}
+
+.post-content-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    margin-left: 20px;
+    flex-grow: 1;
 }
 
-.post-content{
+.post-header {
     display: flex;
-    flex-direction: row;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
-.delete-post{
-    float: right;
+.post-header h1 {
+    font-size: 1.5rem;
+    color: black;
+    margin-right: 10px;
+}
+
+.post-header p {
+    color: black;
+}
+
+.delete-post {
+    margin-left: auto;
+}
+
+.post-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-content p {
+    margin-bottom: 10px;
+}
+
+.delete-post button {
+    font-size: 1rem;
+    background-color: #FF6961;
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.delete-post button:hover {
+    background-color: darkred;
+}
+.post-content {
+    flex-grow: 1;
+    /* Take up the entire remaining space */
+}
+
+.post-content p {
+    margin-bottom: 10px;
+}
+
+.message-button {
+    background-color: var(--button-brown);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: auto;
+    /* Align to the bottom of the post-content container */
+    align-self: flex-end;
+    /* Align to the end of the flex container */
+    transition: background-color 0.3s;
+}
+
+.message-button:hover {
+    background-color: var(--button-brown-darker);
 }
 
 .post-search-container {
