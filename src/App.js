@@ -4,7 +4,7 @@ import { doc, getDoc } from "firebase/firestore";
 import Home from "./Components/pages/Home";
 import Messages from "./Components/pages/Messages";
 import Search from "./Components/pages/Search";
-import Profile from "./Components/pages/Profiles/Profile";
+import Profile from "./Components/pages/Profile";
 import SignIn from "./Components/pages/SignIn";
 import SignUp from "./Components/pages/SignUp";
 import { auth, db } from "./Components/firebase";
@@ -16,6 +16,7 @@ import Navbar from "./Components/NavBar/Navbar";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userPhotoURL, setUserPhotoURL] = useState(null);
+  const [username, setUsername] = useState('');
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -27,6 +28,7 @@ function App() {
         getDoc(userRef).then((docSnap) => {
           if (docSnap.exists()) {
             setUserPhotoURL(docSnap.data().photoURL);
+            setUsername(docSnap.data().username);
           }
         });
       } else {
@@ -37,10 +39,8 @@ function App() {
     return () => unsubscribe();
   }, [navigate]);
 
-  // Function to determine if the Navbar should be rendered
   const shouldRenderNavbar = () => {
     const path = location.pathname;
-    // Exclude Navbar on homepage, login, and signup pages
     return !["/", "/login", "/signup"].includes(path);
   };
 
@@ -52,7 +52,7 @@ function App() {
           <Route path="/" element={isAuthenticated ? <Home /> : <SignIn />} />
           <Route path="/search" element={<Search />} />
           <Route path="/messages" element={<Messages />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="/profile" element={<Profile userPhotoURL={userPhotoURL} username={username} />} />
           <Route path="/login" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/CreatePost" element={<CreatePost />} />
