@@ -3,9 +3,12 @@ import Navbar from "../NavBar/Navbar";
 function Messages() {
   return (
     <>
-      <Navbar />
       <h1>Messages</h1>;
-      <a href="http://localhost:3002/32" target="_blank" rel="noopener noreferrer">
+      <a
+        href="http://localhost:3002/32"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         omg call me plzzzzz
       </a>
     </>

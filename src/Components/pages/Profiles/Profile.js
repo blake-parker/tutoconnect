@@ -5,21 +5,15 @@ import "./Profiles.css";
 import UserPosts from "./UserPosts";
 
 function Profile() {
-  
   return (
     <>
-      <Navbar />
-      
       <div className="Profile">
         <div className="Container">
-
-          <ProfileBar/>
-          <UserPosts/>
-          <UpComingEventsBar/>
-
+          <ProfileBar />
+          <UserPosts />
+          <UpComingEventsBar />
         </div>
       </div>
-      
     </>
   );
 }

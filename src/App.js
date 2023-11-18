@@ -41,7 +41,7 @@ function App() {
   const shouldRenderNavbar = () => {
     const path = location.pathname;
     // Exclude Navbar on homepage, login, and signup pages
-    return !['/', '/login', '/signup'].includes(path);
+    return !["/", "/login", "/signup"].includes(path);
   };
 
   return (
@@ -50,6 +50,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={isAuthenticated ? <Home /> : <SignIn />} />
+          <Route path="/search" element={<Search />} />
           <Route path="/messages" element={<Messages />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/login" element={<SignIn />} />

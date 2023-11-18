@@ -51,7 +51,6 @@ function Search() {
 
   return (
     <>
-      <Navbar goClicked={goFalse} />
       {!goClicked ? (
         <div className="search">
           <h1>I'm looking for a...</h1>
