@@ -117,7 +117,7 @@ const ProfilePage = ({ userPhotoURL, username }) => {
     width: "150px",
     height: "150px",
     marginBottom: "1rem",
-    border: "6px solid pink",
+    border: "2px solid black",
     objectFit: "cover",
   };
 
