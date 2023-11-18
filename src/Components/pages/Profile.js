@@ -1,73 +1,71 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { FaStar } from "react-icons/fa";
-import Modal from "react-modal";
-import { useNavigate } from "react-router-dom";
-import { auth, db } from "../firebase";
-import { collection, addDoc, getDocs } from "firebase/firestore";
-import { query, where, onSnapshot } from "firebase/firestore";
-import { signOut } from "firebase/auth";
-import Post from "../PostPage/Post";
+import Modal from 'react-modal';
+import { useNavigate } from 'react-router-dom';
+import { auth, db } from '../firebase';
+import { collection, addDoc, getDocs } from 'firebase/firestore';
+import { signOut } from 'firebase/auth';
 
-Modal.setAppElement("#root");
+Modal.setAppElement('#root');
 
 const ProfilePage = ({ userPhotoURL, username }) => {
   const [appointments, setAppointments] = useState([]);
+  const [classes, setClasses] = useState([]);
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [newAppointment, setNewAppointment] = useState({ title: "", date: "" });
-  const [posts, setPosts] = useState([]);
+  const [classModalIsOpen, setClassModalIsOpen] = useState(false);
+  const [newAppointment, setNewAppointment] = useState({ title: '', date: '' });
+  const [newClass, setNewClass] = useState('');
   const navigate = useNavigate();
 
   const fetchAppointments = async () => {
     const user = auth.currentUser;
     if (user) {
-      const appointmentsRef = collection(db, "users", user.uid, "appointments");
+      const appointmentsRef = collection(db, 'users', user.uid, 'appointments');
       const appointmentDocs = await getDocs(appointmentsRef);
-      setAppointments(
-        appointmentDocs.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-      );
+      setAppointments(appointmentDocs.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+    }
+  };
+
+  const fetchClasses = async () => {
+    const user = auth.currentUser;
+    if (user) {
+      const classesRef = collection(db, 'users', user.uid, 'classes');
+      const classDocs = await getDocs(classesRef);
+      setClasses(classDocs.docs.map(doc => doc.data().name));
     }
   };
 
   useEffect(() => {
-    const user = auth.currentUser;
-    const postCollectionRef = collection(db, "posts");
-    const postQuery = query(
-      postCollectionRef,
-      where("author.id", "==", user.uid)
-    );
-
-    const unsubscribe = onSnapshot(postQuery, (querySnapshot) => {
-      const newPosts = [];
-      querySnapshot.forEach((doc) => {
-        newPosts.push({ ...doc.data(), id: doc.id });
-      });
-      setPosts(newPosts);
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
-
-  useEffect(() => {
     fetchAppointments();
+    fetchClasses();
   }, []);
 
   const handleAddAppointment = async () => {
     const user = auth.currentUser;
     if (user) {
-      const appointmentsRef = collection(db, "users", user.uid, "appointments");
+      const appointmentsRef = collection(db, 'users', user.uid, 'appointments');
       await addDoc(appointmentsRef, newAppointment);
-      setNewAppointment({ title: "", date: "" });
+      setNewAppointment({ title: '', date: '' });
       closeModal();
       await fetchAppointments();
+    }
+  };
+
+  const handleAddClass = async () => {
+    const user = auth.currentUser;
+    if (user) {
+      const classesRef = collection(db, 'users', user.uid, 'classes');
+      await addDoc(classesRef, { name: newClass });
+      setNewClass('');
+      closeClassModal();
+      await fetchClasses();
     }
   };
 
   const handleSignOut = async () => {
     try {
       await signOut(auth);
-      navigate("/login");
+      navigate('/login');
     } catch (error) {
       console.error("Error signing out: ", error);
     }
@@ -79,6 +77,14 @@ const ProfilePage = ({ userPhotoURL, username }) => {
 
   const closeModal = () => {
     setModalIsOpen(false);
+  };
+
+  const openClassModal = () => {
+    setClassModalIsOpen(true);
+  };
+
+  const closeClassModal = () => {
+    setClassModalIsOpen(false);
   };
 
   const handleAppointmentChange = (e) => {
@@ -206,117 +212,56 @@ const ProfilePage = ({ userPhotoURL, username }) => {
   return (
     <div style={pageStyle}>
       <div style={sidebarStyle}>
-        <img
-          src={userPhotoURL || "default-profile-pic-url"}
-          alt="Profile"
-          style={profileImageStyle}
-        />
-        <h2 style={textStyle}>{username || "Username"}</h2>
+        <img src={userPhotoURL || 'default-profile-pic-url'} alt='Profile' style={profileImageStyle} />
+        <h2 style={textStyle}>{username || 'Username'}</h2>
         <p style={textStyle}>class of 2025</p>
         <div>
           {[...Array(5)].map((_, i) => (
-            <FaStar key={i} size={25} style={{ color: "#ffc107" }} />
+            <FaStar key={i} size={25} style={{ color: '#ffc107' }} />
           ))}
         </div>
-        <button style={buttonStyle}>view reviews</button>
-        <div style={{ width: "100%" }}>
+        <button style={buttonStyle} onClick={openClassModal}>Add Class</button>
+        <div style={{ width: '100%' }}>
           <h3 style={textStyle}>Classes Taken</h3>
-          <div style={classItemStyle}>CS4101</div>
-          <div style={classItemStyle}>CS1351</div>
-          <div style={classItemStyle}>CS4101</div>
+          {classes.map((className, index) => (
+            <div key={index} style={classItemStyle}>{className}</div>
+          ))}
         </div>
       </div>
 
-      <div
-        style={{
-          flex: 1,
-          padding: "1rem",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          margin: 0,
-        }}
-      >
-        {posts.map((post) => {
-          return (
-            <Post
-              title={post.title}
-              author={post.author.name}
-              text={post.postText}
-              id={post.id}
-              authorID={post.author.id}
-              userProfilePicture={post.author.pic}
-              width="65vw"
-            />
-          );
-        })}
+      {/* Main content and Right Sidebar */}
+      <div style={{ flex: 1, padding: '1rem', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
+        <p>Main content goes here</p>
       </div>
 
-      <div style={sidebarStyle}>
-        <h2 style={textStyle}>Upcoming Appointments</h2>
-        {appointments.map((appointment, index) => (
-          <div
-            key={index}
-            style={{
-              ...classItemStyle,
-              background: "#ffffff",
-              color: "#000000",
-              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-            }}
-          >
-            <h3>{appointment.title}</h3>
-            <p>{appointment.date}</p>
-          </div>
-        ))}
-        <button
-          style={{
-            ...buttonStyle,
-            background: "#3cb371",
-            textDecoration: "none",
-          }}
-          onClick={openModal}
-        >
-          Add Appointment
-        </button>
-        <button onClick={handleSignOut} style={logOutButtonStyle}>
-          Log Out
-        </button>
+      <div style={{ ...sidebarStyle, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+        <div>
+          <h2 style={textStyle}>Upcoming Appointments</h2>
+          {appointments.map((appointment, index) => (
+            <div key={index} style={{ ...classItemStyle, background: '#ffffff', color: '#000000', boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)' }}>
+              <h3>{appointment.title}</h3>
+              <p>{appointment.date}</p>
+            </div>
+          ))}
+          <button style={{ ...buttonStyle, background: '#3cb371', textDecoration: 'none' }} onClick={openModal}>Add Appointment</button>
+        </div>
+        <button onClick={handleSignOut} style={logOutButtonStyle}>Log Out</button>
       </div>
 
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={modalStyle}
-        contentLabel="Add Appointment"
-      >
-        <h2 style={{ color: "#ffffff", textAlign: "center" }}>
-          Add New Appointment
-        </h2>
-        <input
-          type="text"
-          placeholder="Appointment Title"
-          name="title"
-          value={newAppointment.title}
-          onChange={handleAppointmentChange}
-          style={modalInputStyle}
-        />
-        <input
-          type="date"
-          name="date"
-          value={newAppointment.date}
-          onChange={handleAppointmentChange}
-          style={modalInputStyle}
-        />
-        <button onClick={handleAddAppointment} style={modalButtonStyle}>
-          Add Appointment
-        </button>
-        <button
-          onClick={closeModal}
-          style={{ ...modalButtonStyle, background: "#dc3545" }}
-        >
-          Cancel
-        </button>
+      {/* Modals */}
+      <Modal isOpen={modalIsOpen} onRequestClose={closeModal} style={modalStyle} contentLabel="Add Appointment">
+        <h2 style={{ color: '#ffffff', textAlign: 'center' }}>Add New Appointment</h2>
+        <input type="text" placeholder="Appointment Title" name="title" value={newAppointment.title} onChange={handleAppointmentChange} style={modalInputStyle} />
+        <input type="date" name="date" value={newAppointment.date} onChange={handleAppointmentChange} style={modalInputStyle} />
+        <button onClick={handleAddAppointment} style={modalButtonStyle}>Add Appointment</button>
+        <button onClick={closeModal} style={{ ...modalButtonStyle, background: '#dc3545' }}>Cancel</button>
+      </Modal>
+
+      <Modal isOpen={classModalIsOpen} onRequestClose={closeClassModal} style={modalStyle}>
+        <h2 style={{ color: '#ffffff', textAlign: 'center' }}>Add New Class</h2>
+        <input type="text" placeholder="Class Name" value={newClass} onChange={(e) => setNewClass(e.target.value)} style={modalInputStyle} />
+        <button onClick={handleAddClass} style={modalButtonStyle}>Add Class</button>
+        <button onClick={closeClassModal} style={{ ...modalButtonStyle, background: '#dc3545' }}>Cancel</button>
       </Modal>
     </div>
   );
