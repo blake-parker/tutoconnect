@@ -1,17 +1,15 @@
 import { Link } from "react-router-dom";
-import logo from "../../logo/small_logo.png"
+import logo from "../../logo/small_logo.png";
 import "./Nav.css";
 
-function Navbar({goClicked}) {
-  const handleClick = () =>{
-    if (goClicked != null){
-      goClicked();
-    }
-  }
+function Navbar({ userPhotoURL }) {
+  // Default profile picture URL
+  const defaultProfilePicUrl = "https://firebasestorage.googleapis.com/v0/b/tutoconnect-93c03.appspot.com/o/default.jpg?alt=media&token=19061a62-a3df-4ff1-ac4f-9623ee7447b3";
+
   return (
     <nav className="nav">
-      <Link to="/" className="site-title" onClick={handleClick}>
-        <img src={logo} alt="" className="home-img"/>
+      <Link to="/" className="site-title">
+        <img src={logo} alt="" className="home-img" />
       </Link>
       <ul className="nav-bar-elements">
         <li>
@@ -20,8 +18,8 @@ function Navbar({goClicked}) {
         <li>
           <Link to="/profile">
             <img
-              src="https://i.pinimg.com/736x/a8/45/1f/a8451fc4aa4b4e3c39298fdfe2c3fd4d.jpg"
-              alt=""
+              src={userPhotoURL || defaultProfilePicUrl}
+              alt="Profile"
               className="profile-img"
             />
           </Link>
@@ -30,4 +28,5 @@ function Navbar({goClicked}) {
     </nav>
   );
 }
+
 export default Navbar;
