@@ -276,7 +276,7 @@ const ProfilePage = ({ userPhotoURL, username }) => {
         <div>
           <Star x={rating} />
         </div>
-        <button onClick={calculateAverageRating} style={buttonStyle}>
+        <button onClick={openClassModal} style={buttonStyle}>
           view reviews
         </button>
         <div style={{ width: "100%" }}>
