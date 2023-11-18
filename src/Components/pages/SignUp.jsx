@@ -46,18 +46,18 @@ function SignUp() {
         displayName: username,
         photoURL: photoURL // Set the photo URL in the user's profile
       });
-  
-      // Save additional user data in Firestore
-      await setDoc(doc(db, 'users', user.uid), {
-        username: username,
-        email: email,
-        university: university,
-        photoURL: photoURL // Optionally store the photo URL in Firestore as well
+
+      //create user on firestore
+      await setDoc(doc(db, "users", userCred.user.uid), {
+        uid: userCred.user.uid,
+        username,
+        email,
       });
-  
-      // Navigate to dashboard
-      navigate('/dashboard');
-  
+
+      //create empty user chats on firestore
+      await setDoc(doc(db, "userChats", userCred.user.uid), {});
+
+      navigate('/');
     } catch (error) {
       if (error.code === 'auth/email-already-in-use') {
         alert('This email is already in use. Please use a different email.');
