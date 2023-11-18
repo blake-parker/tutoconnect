@@ -1,9 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import StarRating from "./StarRating";
+import DateFilter from "./DateFilter";
 
 import "../CSS/posts.css";
 import "../CSS/posts-search.css";
 
 function PostSearch({ hc, hc2, sB1, sB2 }) {
+  const navigate = useNavigate();
   const [isSelectedB1, setIsSelectedB1] = useState(sB1);
   const [isSelectedB2, setIsSelectedB2] = useState(sB2);
 
@@ -23,9 +27,13 @@ function PostSearch({ hc, hc2, sB1, sB2 }) {
   const handleSearch = () => {
     isSelectedB1 ? hc() : hc2();
   };
+
+  const createPostHandleClick = () => {
+    navigate("/CreatePost");
+  };
+
   return (
     <div className="post-search-container">
-      PostSearch
       <div className="searchBar-container2">
         <div className="input-container2">
           <input type="text" id="search2" placeholder="" />
@@ -49,6 +57,8 @@ function PostSearch({ hc, hc2, sB1, sB2 }) {
           >
             Tutor
           </button>
+        </div>
+        <div className="search-btn">
           <button className="search-button" onClick={handleSearch}>
             Search
           </button>
@@ -56,31 +66,36 @@ function PostSearch({ hc, hc2, sB1, sB2 }) {
       </div>
       <div className="filter-container">
         <div className="filter-text">Filter By:</div>
-        <div className="rating-filter">
-          Rating
-          <div className="stars"></div>
-        </div>
-        <div className="date-filter">
-          Date: <br />
-          <input type="checkbox" id="day" name="day" value="day" />
-          <label for="day"> Posted today</label>
-          <br />
-          <input type="checkbox" id="week" name="week" value="week" />
-          <label for="week"> Posted this week</label>
-          <br />
-          <input type="checkbox" id="month" name="month" value="month" />
-          <label for="month"> Posted this month</label>
-          <br />
-        </div>
-        <div className="sort-by">
-          Sort By:
-          <select name="selectedStatus" defaultValue="newest">
-            <option value="newest">Newest Posts First</option>
-            <option value="oldest">Oldest Posts First</option>
-          </select>
+        <div className="everything-else">
+          <div className="rating-filter">
+            Rating
+            <div className="stars">
+              <StarRating />
+            </div>
+          </div>
+          <div className="date-filter">
+            <div id="date-ttl">Date:</div>
+            <div id="date-bdy">
+              <DateFilter />
+            </div>
+          </div>
+          <div className="sort-by">
+            <p>Sort By:</p>
+            <div className="status-box">
+              <select name="selectedStatus" defaultValue="newest">
+                <option value="newest">Newest Posts First</option>
+                <option value="oldest">Oldest Posts First</option>
+              </select>
+            </div>
+          </div>
         </div>
       </div>
-      <button className="search-button">Apply Filters</button>
+      <div className="aply-fltr-btn">
+        <button>Apply Filters</button>
+      </div>
+      <div className="create-post-button">
+        <button onClick={createPostHandleClick}>Create Post</button>
+      </div>
     </div>
   );
 }
