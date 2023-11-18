@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth } from '../firebase';
+import { setDoc, doc } from 'firebase/firestore';
+import { auth, db, storage } from '../firebase'; // Ensure you export `storage` from your firebase.js
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
 
 function SignUp() {
@@ -8,6 +10,7 @@ function SignUp() {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [university, setUniversity] = useState('');
+  const [profilePic, setProfilePic] = useState(null);
   const [creditCardNumber, setCreditCardNumber] = useState('');
   const [cvv, setCvv] = useState('');
   const [expirationMonth, setExpirationMonth] = useState('');
@@ -19,16 +22,56 @@ function SignUp() {
   const navigate = useNavigate();
 
   const handleSignUp = async () => {
+    if (!username || !university) {
+      alert("Please fill in all required fields: username, email, password, university.");
+      return; 
+    }
+  
     try {
+      // Create user with email and password
       const userCred = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCred.user;
-
+  
+      let photoURL = '';
+  
+      // Upload profile picture if it exists
+      if (profilePic) {
+        const storageRef = ref(storage, `profilePics/${user.uid}`);
+        await uploadBytes(storageRef, profilePic);
+        photoURL = await getDownloadURL(storageRef);
+      }
+  
+      // Update user profile
       await updateProfile(user, {
-        displayName: username
+        displayName: username,
+        photoURL: photoURL // Set the photo URL in the user's profile
       });
-      navigate('/');
+  
+      // Save additional user data in Firestore
+      await setDoc(doc(db, 'users', user.uid), {
+        username: username,
+        email: email,
+        university: university,
+        photoURL: photoURL // Optionally store the photo URL in Firestore as well
+      });
+  
+      // Navigate to dashboard
+      navigate('/dashboard');
+  
     } catch (error) {
-      console.error('Error signing up:', error.message);
+      if (error.code === 'auth/email-already-in-use') {
+        alert('This email is already in use. Please use a different email.');
+      } else {
+        console.error('Error signing up:', error.message);
+        alert('An error occurred during sign up. Please try again.');
+      }
+    }
+  };
+  
+  
+  const handleFileChange = (e) => {
+    if (e.target.files[0]) {
+      setProfilePic(e.target.files[0]);
     }
   };
 
@@ -125,6 +168,11 @@ function SignUp() {
           <option value="Texas A&M">Texas A&M</option>
           <option value="Bama">Bama</option>
         </select>
+        <input
+          type="file"
+          onChange={handleFileChange}
+          style={styles.input}
+        />
 
         <h3 style={{ ...styles.header, marginTop: '25px' }}>Payment Information</h3>
         <input
