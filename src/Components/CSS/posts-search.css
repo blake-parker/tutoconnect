@@ -1,10 +1,20 @@
 .searchBar-container2 {
     flex: 1;
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 1rem;
+}
+
+.search-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
 }
 
 #search2 {
@@ -12,22 +22,31 @@
     height: 25px;
     border: none;
     outline: none;
+    padding: 0.5rem;
+}
+
+.search-button{
+    border-radius: 5px;
+}
+
+#button1-s,
+#button2-s,
+.search-button {
+    flex-basis: 100%;
+    padding: 10px;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 #button1-s {
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
-    width: 40%;
-    height: 40%;
-    padding: 10px;
 }
 
 #button2-s {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    width: 40%;
-    height: 40%;
-    padding: 10px;
 }
 
 .search-button {
@@ -36,15 +55,138 @@
     border: none;
     border-radius: 5px;
     padding: 10px 20px;
-    margin-left: 2vw;
+    margin-left: 0;
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
 .left-button-container-s {
     display: flex;
-    flex-direction: row;
 }
 
+.filter-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1rem;
+}
 
-/* VVVVVVVVVVVVVV FILTER STUFF VVVVVVVVVVVVVV */
+.filter-text {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.rating-filter {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1.5rem;
+}
+
+.stars {
+    margin-left: 20px;
+    font-size: 2rem;
+}
+
+.date-filter #date-ttl{
+    font-size: 1.5rem;
+}
+
+.date-filter #date-bdy{
+    font-size: 1.25rem;
+    margin-left: 20px;
+}
+
+.sort-by {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .filter-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .filter-text,
+    .rating-filter,
+    .date-filter,
+    .sort-by {
+        flex-basis: 100%;
+    }
+}
+
+.sort-by {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 0.5rem;
+    font-size: 1.5rem;
+}
+
+.sort-by p{
+    margin-bottom: 0.5rem;
+}
+.status-box{
+    margin-left: 20px;
+}
+
+.sort-by select {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.sort-by select:hover,
+.sort-by select:focus {
+    border-color: var(--button-green);
+}
+
+.aply-fltr-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.aply-fltr-btn button {
+    background-color: var(--button-green);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.create-post-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15vh;
+}
+
+.create-post-button button {
+    background-color: var(--button-green);
+    color: var(--white);
+    border: none;
+    border-radius: 5px;
+    width: 500px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.everything-else{
+    margin-left: 20px;
+}

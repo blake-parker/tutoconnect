@@ -5,7 +5,7 @@ import {
   where,
   onSnapshot,
 } from "firebase/firestore";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import { useState, useEffect } from "react";
 import PostSearch from "../PostPage/PostSearch";
 import Post from "../PostPage/Post";
@@ -66,6 +66,7 @@ function Posts({
                 id={post.id}
                 authorID={post.author.id}
                 postType={postType}
+                userProfilePicture={post.author.pic}
               />
             );
           })}
