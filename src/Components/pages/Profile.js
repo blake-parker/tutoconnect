@@ -235,7 +235,6 @@ const ProfilePage = ({ userPhotoURL, username }) => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          zoom: 0.85,
           margin: 0,
         }}
       >
@@ -248,6 +247,7 @@ const ProfilePage = ({ userPhotoURL, username }) => {
               id={post.id}
               authorID={post.author.id}
               userProfilePicture={post.author.pic}
+              width="65vw"
             />
           );
         })}

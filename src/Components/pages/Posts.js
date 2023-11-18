@@ -67,6 +67,7 @@ function Posts({
                 authorID={post.author.id}
                 postType={postType}
                 userProfilePicture={post.author.pic}
+                width="80vw"
               />
             );
           })}

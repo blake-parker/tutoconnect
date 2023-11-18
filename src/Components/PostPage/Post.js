@@ -14,6 +14,7 @@ function Post({
   authorID,
   postType,
   userProfilePicture,
+  width,
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -37,7 +38,7 @@ function Post({
   };
   return (
     <>
-      <div className="posts-container">
+      <div className="posts-container" style={{ width: width }}>
         <div className="post-img-container">
           <img src={userProfilePicture || logo} alt="placeholder" />
           <p>{author}</p>
