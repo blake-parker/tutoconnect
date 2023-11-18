@@ -3,7 +3,15 @@ import logo from "../../logo/small_logo.png";
 import { deleteDoc, doc } from "firebase/firestore";
 import { auth, db } from "../firebase";
 
-function Post({ title, author, text, id, authorID, postType }) {
+function Post({
+  title,
+  author,
+  text,
+  id,
+  authorID,
+  postType,
+  userProfilePicture,
+}) {
   const deletePost = async (pid) => {
     const postDoc = doc(db, "posts", pid);
     await deleteDoc(postDoc);
@@ -13,7 +21,7 @@ function Post({ title, author, text, id, authorID, postType }) {
     <>
       <div className="posts-container">
         <div className="post-img-container">
-          <img src={logo} alt="placeholder" />
+          <img src={userProfilePicture || logo} alt="placeholder" />
           <p>{author}</p>
         </div>
         <div className="post-content-container">

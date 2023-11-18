@@ -16,7 +16,11 @@ function CreatePost() {
     await addDoc(postCollectionRef, {
       title,
       postText,
-      author: { name: auth.currentUser.displayName, id: auth.currentUser.uid },
+      author: {
+        name: auth.currentUser.displayName,
+        id: auth.currentUser.uid,
+        pic: auth.currentUser.photoURL,
+      },
       timestamp: serverTimestamp(),
       postType,
     });
