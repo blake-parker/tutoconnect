@@ -3,25 +3,28 @@
     height: calc(100vh - 80px);
     display: grid;
     place-items: center;
+    background-color: var(--main-bg);
 }
 
 .cpContainer {
     width: 500px;
     height: auto;
     padding: 20px;
-    background-color: black;
+    background-color: var(--dark-bg);
     border-radius: 12px;
-    color: white;
+    color: var(--white);
     display: flex;
     flex-direction: column;
 }
 
 .cpContainer h1 {
     text-align: center;
+    color: var(--white);
 }
 
 .cpContainer label {
     font-size: 25px;
+    color: var(--white);
 }
 
 .cpContainer .inputGp {
@@ -36,6 +39,8 @@
     border: none;
     border-radius: 2px;
     padding: 5px;
+    background-color: var(--white);
+    color: var(--dark-bg);
 }
 
 .inputGp input {
@@ -53,6 +58,8 @@
     border-radius: 5px;
     cursor: pointer;
     font-size: 18px;
+    background-color: var(--button-green);
+    color: var(--white);
 }
 
 input,
