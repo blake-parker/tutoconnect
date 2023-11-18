@@ -11,7 +11,6 @@ function Home() {
   };
   return (
     <>
-      <Navbar />
       <div className="lp-container">
         <div className="picture">
           <img src={logo} alt="" />

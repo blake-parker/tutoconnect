@@ -16,7 +16,7 @@ import Navbar from "./Components/NavBar/Navbar";
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userPhotoURL, setUserPhotoURL] = useState(null);
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -41,7 +41,7 @@ function App() {
 
   const shouldRenderNavbar = () => {
     const path = location.pathname;
-    return !["/", "/login", "/signup"].includes(path);
+    return !["/login", "/signup"].includes(path);
   };
 
   return (
@@ -52,7 +52,12 @@ function App() {
           <Route path="/" element={isAuthenticated ? <Home /> : <SignIn />} />
           <Route path="/search" element={<Search />} />
           <Route path="/messages" element={<Messages />} />
-          <Route path="/profile" element={<Profile userPhotoURL={userPhotoURL} username={username} />} />
+          <Route
+            path="/profile"
+            element={
+              <Profile userPhotoURL={userPhotoURL} username={username} />
+            }
+          />
           <Route path="/login" element={<SignIn />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/CreatePost" element={<CreatePost />} />
