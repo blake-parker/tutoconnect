@@ -41,7 +41,7 @@ function App() {
 
   const shouldRenderNavbar = () => {
     const path = location.pathname;
-    return !["/login", "/signup"].includes(path);
+    return !["/", "/login", "/signup"].includes(path);
   };
 
   return (

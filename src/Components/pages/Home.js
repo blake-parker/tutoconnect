@@ -11,6 +11,7 @@ function Home() {
   };
   return (
     <>
+      <Navbar userPhotoURL={auth.currentUser.photoURL} />
       <div className="lp-container">
         <div className="picture">
           <img src={logo} alt="" />
