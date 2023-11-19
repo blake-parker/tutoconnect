@@ -66,7 +66,6 @@ class Chats extends Component {
  
 
   render(){
-
     const { chats } = this.state;
 
     return (

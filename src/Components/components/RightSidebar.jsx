@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import { AuthContext } from '../contexts/AuthContext';
 import { db } from "../firebase"; // Ensure this path is correct for your setup
 import { collection, addDoc } from "firebase/firestore";
+import { FaStar } from "react-icons/fa";
 
 Modal.setAppElement("#root"); // Set the root element for accessibility reasons
 
@@ -39,10 +40,18 @@ const RightSidebar = () => {
         <img src="https://i.pinimg.com/736x/a8/45/1f/a8451fc4aa4b4e3c39298fdfe2c3fd4d.jpg" alt="Profile" className='displayProfilePic'></img>
       </div>
       {/* Hardcoded username */}
-      <span className='userName'>Tutor</span>
-
+      <span className='userName'>Seif</span>
+      <div style={{alignSelf:'center'}}>
+        <FaStar size={25} style={{ color: "#ffc107" }} />
+        <FaStar size={25} style={{ color: "#ffc107" }} />
+        <FaStar size={25} style={{ color: "#ffc107" }} />
+        <FaStar size={25} style={{ color: "#ffc107" }} />
+      </div>
+      <div style={{ alignSelf: 'center', color:"white"}}>
+        LSU Class of 2025
+      </div>
       {/* 'Add Tip' button styled similarly to the modal's button */}
-      <div style={{ alignSelf: 'center', marginTop: 'auto' }}>
+      <div style={{ alignSelf: 'center', marginTop: 'auto' , marginBottom:"10px"}}>
         <button onClick={openModal} className="modal-button">Add Tip</button>
       </div>
 

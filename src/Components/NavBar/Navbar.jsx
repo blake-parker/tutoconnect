@@ -24,6 +24,7 @@ function Navbar({ userPhotoURL }) {
               src={userPhotoURL || defaultProfilePicUrl}
               alt="Profile"
               className="profile-img"
+              style={{border: "2px solid black"}}
             />
           </Link>
         </li>

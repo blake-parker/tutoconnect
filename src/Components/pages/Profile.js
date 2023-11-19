@@ -199,7 +199,7 @@ const ProfilePage = ({ userPhotoURL, username }) => {
   };
 
   const classItemStyle = {
-    background: "#000000",
+    background: "var(--button-brown)",
     color: "#ffffff",
     padding: "10px 20px",
     borderRadius: "20px",
