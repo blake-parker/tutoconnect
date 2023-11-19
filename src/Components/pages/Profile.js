@@ -272,12 +272,12 @@ const ProfilePage = ({ userPhotoURL, username }) => {
           style={profileImageStyle}
         />
         <h2 style={textStyle}>{username || "Username"}</h2>
-        <p style={textStyle}>class of 2025</p>
+        <p style={textStyle}>LSU class of 2025</p>
         <div>
           <Star x={rating} />
         </div>
         <button onClick={openClassModal} style={buttonStyle}>
-          view reviews
+          Add Class
         </button>
         <div style={{ width: "100%" }}>
           <h3 style={textStyle}>Classes Taken</h3>

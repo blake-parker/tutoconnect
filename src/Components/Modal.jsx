@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./CSS/Modal.css";
+import "./CSS/Mod.css";
 
 const Modal = ({ isOpen, onClose, onConfirm, children }) => {
   return (
