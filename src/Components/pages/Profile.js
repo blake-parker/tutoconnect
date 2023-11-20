@@ -309,7 +309,7 @@ const ProfilePage = ({ userPhotoURL, username }) => {
               id={post.id}
               authorID={post.author.id}
               userProfilePicture={post.author.pic}
-              width="65vw"
+              width="100%"
               rating={rating}
             />
           );

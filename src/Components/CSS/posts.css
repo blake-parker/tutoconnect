@@ -121,7 +121,7 @@ font-family: 'Kumbh Sans', sans-serif;
     padding: 20px;
     border-radius: 25px;
     color: var(--white);
-    height: 85vh;
+    height: auto;
     width: 15vw;
     background-color: var(--dark-bg);
 }
