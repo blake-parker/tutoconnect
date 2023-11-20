@@ -37,13 +37,16 @@ function Home() {
           <img src={logo} alt="" />
         </div>
         <div className="welcome">
-          <h1>
-            Welcome to tutoConnect,{" "}
-            <p style={{ color: colors[random] }}>
-              &nbsp;{auth.currentUser.displayName}
-            </p>
-            !
-          </h1>
+          <h1>Welcome to tutoConnect,</h1>
+          <p
+            style={{
+              color: colors[random],
+              fontSize: "50px",
+              marginBottom: "15px",
+            }}
+          >
+            &nbsp;{auth.currentUser.displayName}!
+          </p>
           <h2>Discover the perfect tutor for your needs now</h2>
           <button onClick={handleNav}>Get Started</button>
         </div>
