@@ -24,7 +24,7 @@ function Navbar({ userPhotoURL }) {
         <li>
           <Link to="/profile">
             <img
-              src={userPhotoURL || defaultProfilePicUrl}
+              src={defaultProfilePicUrl}
               alt="Profile"
               className="profile-img"
               style={{border: "2px solid black"}}

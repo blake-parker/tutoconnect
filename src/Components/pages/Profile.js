@@ -267,7 +267,10 @@ const ProfilePage = ({ userPhotoURL, username }) => {
     <div style={pageStyle}>
       <div style={sidebarStyle}>
         <img
-          src={userPhotoURL || "default-profile-pic-url"}
+          src={
+            userPhotoURL ||
+            "https://firebasestorage.googleapis.com/v0/b/tutoconnect-93c03.appspot.com/o/default.jpg?alt=media&token=19061a62-a3df-4ff1-ac4f-9623ee7447b3"
+          }
           alt="Profile"
           style={profileImageStyle}
         />
@@ -308,7 +311,7 @@ const ProfilePage = ({ userPhotoURL, username }) => {
               text={post.postText}
               id={post.id}
               authorID={post.author.id}
-              userProfilePicture={post.author.pic}
+              userProfilePicture="https://firebasestorage.googleapis.com/v0/b/tutoconnect-93c03.appspot.com/o/default.jpg?alt=media&token=19061a62-a3df-4ff1-ac4f-9623ee7447b3"
               width="100%"
               rating={rating}
             />
