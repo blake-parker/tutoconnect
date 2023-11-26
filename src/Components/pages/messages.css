@@ -106,6 +106,8 @@
 }
 
 .startCall{
+    margin-top: auto;
+    height: 90%;
     width: 10%;
     background-color: #3CB371;
     color: white;
@@ -118,6 +120,8 @@
 }
 
 .sendMessage{
+    margin-top:auto;
+    height: 90%;
     width: 10%;
     background-color: #3CB371;
     color: white;
@@ -164,8 +168,16 @@
     border-radius: 0px 10px 10px 10px;
 }
 
+.call{
+    background-color: #3CB371;
+}
+
+.call a{
+    text-decoration: none;
+}
 .owner{
     flex-direction: row-reverse;
+    margin-right: 15px;
 }
 .owner .inTextPic{
     margin-left: 10px;

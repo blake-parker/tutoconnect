@@ -29,7 +29,6 @@ const Input = () => {
     console.log(querySnapshot)
     querySnapshot.forEach(async (doca) => {
       if (message.trim() !== '') {
-        console.log("inserting shit", doca.data().chat)
         let arr = doca.data().chat
         arr.push(currentUser.uid+":"+message)
         console.log(arr)
@@ -50,7 +49,6 @@ const Input = () => {
     console.log(querySnapshot)
     querySnapshot.forEach(async (doca) => {
 
-      console.log("inserting shit", doca.data().chat)
       let arr = doca.data().chat
       arr.push(currentUser.uid+":call101010")
       console.log(arr)
