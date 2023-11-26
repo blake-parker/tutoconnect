@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { setDoc, doc } from 'firebase/firestore';
-import { auth, db, storage } from '../firebase'; // Ensure you export `storage` from your firebase.js
+import { auth, db, storage } from '../firebase'; 
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { useNavigate } from 'react-router-dom';
 
@@ -90,7 +90,6 @@ function SignUp() {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      height: '100vh',
       backgroundColor: '#ADC2C0',
     },
     profileSetup: {

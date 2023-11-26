@@ -9,8 +9,8 @@ import Posts from "./Posts";
 function Search() {
   const navigate = useNavigate();
 
-  const [sortBy, setSortBy] = useState("");
-  const [isSelectedB1, setIsSelectedB1] = useState(false);
+  const [sortBy, setSortBy] = useState("student");
+  const [isSelectedB1, setIsSelectedB1] = useState(true);
   const handleClick = () => {
     setIsSelectedB1(!isSelectedB1);
     console.log(sortBy);
@@ -87,13 +87,6 @@ function Search() {
               </button>
             </div>
           </form>
-          <button
-            className="other-button"
-            id="create-post"
-            onClick={createPostHandleClick}
-          >
-            Create Post
-          </button>
         </div>
       ) : (
         <Posts

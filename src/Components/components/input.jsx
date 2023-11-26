@@ -13,6 +13,7 @@ import {
 } from "firebase/firestore";
 import { AuthContext } from '../contexts/AuthContext'
 import {db} from "../firebase"
+import video from '../../logo/zoom.png'
 
 
 
@@ -60,11 +61,11 @@ const Input = () => {
 
   return (
     <div className='inputBar'>
-      <button className='startCall' onClick={sendCall}>start call</button>
+      <button className='startCall' onClick={sendCall}>Video Call</button>
       <input className="chatInput"
         value={message}
         onChange={(e) => setMessage(e.target.value)}/>
-      <button className='sendMessage' onClick={sendMessage}>send</button>
+      <button className='sendMessage' onClick={sendMessage}>Send</button>
     </div>
   )
 }

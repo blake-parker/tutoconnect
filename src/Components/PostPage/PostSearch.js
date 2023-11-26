@@ -93,9 +93,6 @@ function PostSearch({ hc, hc2, sB1, sB2 }) {
       <div className="aply-fltr-btn">
         <button>Apply Filters</button>
       </div>
-      <div className="create-post-button">
-        <button onClick={createPostHandleClick}>Create Post</button>
-      </div>
     </div>
   );
 }

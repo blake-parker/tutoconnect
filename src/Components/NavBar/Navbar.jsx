@@ -13,6 +13,9 @@ function Navbar({ userPhotoURL }) {
       </Link>
       <ul className="nav-bar-elements">
         <li>
+          <Link to="/createpost">Create Post</Link>
+        </li>
+        <li>
           <Link to="/search">Search</Link>
         </li>
         <li>
