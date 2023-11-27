@@ -187,7 +187,6 @@
     border-radius: 10px 0px 10px 10px;
 }
 
-/* Modal content styling */
 .modal-content {
     position: absolute;
     top: 50%;
@@ -196,24 +195,22 @@
     bottom: auto;
     margin-right: -50%;
     transform: translate(-50%, -50%);
-    background-color: #333; /* or any color you have set for var(--dark-bg) */
+    background-color: #333; 
     border-radius: 20px;
     padding: 20px;
     width: 300px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    outline: none; /* It's a good practice to remove the outline for modals */
+    outline: none; 
   }
   
-  /* Modal input styling */
   .modal-input {
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px; /* adjust as needed */
+    margin-bottom: 10px; 
     border-radius: 5px;
     border: 1px solid #ddd;
   }
-  
-  /* Modal button styling */
+
   .modal-button {
     background-color: #3cb371;
     color: #ffffff;
@@ -224,11 +221,10 @@
     font-size: 0.9rem;
     font-weight: bold;
     width: 100%;
-    margin-top: 10px; /* adjust as needed */
+    margin-top: 10px;
     text-align: center;
   }
   
-  /* Modal button for cancel action styling, if it's needed */
   .modal-button-cancel {
     background-color: #dc3545;
   }

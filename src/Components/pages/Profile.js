@@ -144,7 +144,7 @@ const ProfilePage = ({ userPhotoURL, username }) => {
     const averageRating = totalRating / totalPosts;
     return averageRating;
   };
-  // Inline styles
+
   const pageStyle = {
     display: "flex",
     justifyContent: "center",
@@ -223,7 +223,6 @@ const ProfilePage = ({ userPhotoURL, username }) => {
     marginTop: "20px",
   };
 
-  // Modal styles
   const modalStyle = {
     content: {
       top: "50%",
