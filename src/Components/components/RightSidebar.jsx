@@ -37,7 +37,7 @@ const RightSidebar = () => {
     <div className='rightSidebar' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%' }}>
       {/* Hardcoded profile picture */}
       <div className="user">
-        <img src="https://i.pinimg.com/736x/a8/45/1f/a8451fc4aa4b4e3c39298fdfe2c3fd4d.jpg" alt="Profile" className='displayProfilePic'></img>
+        <img src="https://cdn.discordapp.com/attachments/1149014555490529312/1178510180254756975/IMG_3490.jpg?ex=65766822&is=6563f322&hm=555ea6a48721a3ebc96008f7ecf669cd09422ac902210a819263546da5ea7f4f&" alt="Profile" className='displayProfilePic'></img>
       </div>
       {/* Hardcoded username */}
       <span className='userName'>Seif</span>

@@ -167,6 +167,7 @@ function SignUp() {
           <option value="Texas A&M">Texas A&M</option>
           <option value="Bama">Bama</option>
         </select>
+        <p style={{textAlign: 'center'}}>Choose a profile picture</p>
         <input
           type="file"
           onChange={handleFileChange}
