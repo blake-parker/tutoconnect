@@ -28,33 +28,28 @@ function SignUp() {
     }
   
     try {
-      // Create user with email and password
       const userCred = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCred.user;
   
       let photoURL = '';
   
-      // Upload profile picture if it exists
       if (profilePic) {
         const storageRef = ref(storage, `profilePics/${user.uid}`);
         await uploadBytes(storageRef, profilePic);
         photoURL = await getDownloadURL(storageRef);
       }
   
-      // Update user profile
       await updateProfile(user, {
         displayName: username,
-        photoURL: photoURL // Set the photo URL in the user's profile
+        photoURL: photoURL 
       });
 
-      //create user on firestore
       await setDoc(doc(db, "users", userCred.user.uid), {
         uid: userCred.user.uid,
         username,
         email,
       });
 
-      //create empty user chats on firestore
       await setDoc(doc(db, "userChats", userCred.user.uid), {});
 
       navigate('/');
@@ -83,7 +78,6 @@ function SignUp() {
     "TT", "UT", "VT", "VA", "VI", "WA", "WV", "WI", "WY"
   ];
 
-  // Inline styles
   const styles = {
     body: {
       fontFamily: "'Kumbh Sans', sans-serif",
@@ -160,7 +154,7 @@ function SignUp() {
         <select
           value={university}
           onChange={(e) => setUniversity(e.target.value)}
-          style={{ ...styles.select, marginBottom: '25px' }} // Added margin here for separation
+          style={{ ...styles.select, marginBottom: '25px' }} 
         >
           <option value="">Select University</option>
           <option value="Louisiana State University">Louisiana State University</option>
