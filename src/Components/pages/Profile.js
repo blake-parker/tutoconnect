@@ -268,7 +268,6 @@ const ProfilePage = ({ userPhotoURL, username }) => {
       <div style={sidebarStyle}>
         <img
           src={
-            userPhotoURL ||
             "https://firebasestorage.googleapis.com/v0/b/tutoconnect-93c03.appspot.com/o/default.jpg?alt=media&token=19061a62-a3df-4ff1-ac4f-9623ee7447b3"
           }
           alt="Profile"
