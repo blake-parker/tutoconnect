@@ -1,7 +1,7 @@
 # Tutoconnect
 
-A simple react web application created for CSC 4330 at LSU.
-Created by:
+<p>A simple react web application created for CSC 4330 at LSU.</p>
+<p>Created by:</p>
 <ul>
   <li>
     <a href="https://github.com/blake-parker" target="_blank"> Blake Parker </a>
